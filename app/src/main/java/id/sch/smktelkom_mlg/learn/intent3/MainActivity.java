@@ -23,7 +23,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
     }
 
-
+    public void onWebPage(String url) {
+        Uri webpage = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent.resolveActivity(getPackageManager()) != null)
+            startActivity(intent);
+    }
 
 
     @Override
@@ -45,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         composeSmsMessage("Pesan Dari SMK Telkom Malang");
+                    }
+                });
+
+        findViewById(R.id.imageViewBrowser)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onWebPage("http://www.smktelkom-mlg.sch.id/");
                     }
                 });
     }
